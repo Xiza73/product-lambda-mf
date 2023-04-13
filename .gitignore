@@ -1,0 +1,9 @@
+# package directories
+node_modules
+dist
+jspm_packages
+.vscode
+.env
+
+# Serverless directories
+.serverless

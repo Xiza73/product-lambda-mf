@@ -1,0 +1,43 @@
+service: product-lambda-mf
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  stage: ${opt:stage, 'dev'}
+  region: us-west-2
+
+package:
+  include:
+    - ormconfig.js
+    - node_modules/**
+    - package.json
+    - package-lock.json
+
+functions:
+  getProducts:
+    handler: dist/lambdas/getProducts.handler
+    timeout: 30
+    events:
+      - http:
+          path: /products
+          method: get
+          cors: true
+
+  createProduct:
+    handler: dist/lambdas/createProduct.handler
+    timeout: 30
+    events:
+      - http:
+          path: /products
+          method: post
+          cors: true
+
+  createCategory:
+    handler: dist/lambdas/createCategory.handler
+    timeout: 30
+    events:
+      - http:
+          path: /categories
+          method: post
+          cors: true
