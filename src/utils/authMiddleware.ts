@@ -14,7 +14,7 @@ export const authMiddleware = (
     event: APIGatewayProxyEvent,
     _context: Context
   ): Promise<APIGatewayProxyResult> => {
-    const token = event.headers["connection-token"];;
+    const token = event.headers["connection-token"];
 
     if (!token) {
       return {
